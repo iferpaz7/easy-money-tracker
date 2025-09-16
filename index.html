@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Personal de Finanzas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Gestor Personal de Finanzas</h1>
+            <p>Controla tus finanzas de manera inteligente</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('dashboard')">📊 Dashboard</button>
+            <button class="nav-tab" onclick="showTab('income')">💵 Ingresos</button>
+            <button class="nav-tab" onclick="showTab('expenses')">💸 Gastos</button>
+            <button class="nav-tab" onclick="showTab('savings')">🏦 Ahorros</button>
+            <button class="nav-tab" onclick="showTab('projections')">📈 Proyecciones</button>
+            <button class="nav-tab" onclick="showTab('reports')">📋 Reportes</button>
+            <button class="nav-tab" onclick="showTab('settings')">⚙️ Configuración</button>
+        </div>
+        <div id="dashboard" class="tab-content active">
+            <div class="summary-cards">
+                <div class="summary-card income">
+                    <h4>Ingresos Mensuales</h4>
+                    <div class="amount" id="totalIncome">$0.00</div>
+                </div>
+                <div class="summary-card expense">
+                    <h4>Gastos Totales</h4>
+                    <div class="amount" id="totalExpenses">$0.00</div>
+                    <small>Incluye gastos + deudas</small>
+                </div>
+                <div class="summary-card savings">
+                    <h4>Ahorros Objetivo</h4>
+                    <div class="amount" id="totalSavings">$0.00</div>
+                </div>
+                <div class="summary-card" id="balanceCard">
+                    <h4>Saldo Restante</h4>
+                    <div class="amount" id="remainingBalance">$0.00</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📅 Filtro por Período</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="dateFrom">Fecha Desde</label>
+                        <input type="date" id="dateFrom">
+                    </div>
+                    <div class="form-col">
+                        <label for="dateTo">Fecha Hasta</label>
+                        <input type="date" id="dateTo">
+                    </div>
+                    <div class="form-col">
+                        <label>&nbsp;</label>
+                        <button class="btn" onclick="applyDateFilter()">🔍 Aplicar Filtro</button>
+                        <button class="btn btn-warning" onclick="clearDateFilter()">🔄 Limpiar</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label>Períodos Predefinidos:</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                        <button class="btn btn-small" onclick="setPeriod('currentMonth')">📅 Este Mes</button>
+                        <button class="btn btn-small" onclick="setPeriod('lastMonth')">📅 Mes Pasado</button>
+                        <button class="btn btn-small" onclick="setPeriod('currentQuarter')">📊 Este Trimestre</button>
+                        <button class="btn btn-small" onclick="setPeriod('lastQuarter')">📊 Trimestre Pasado</button>
+                        <button class="btn btn-small" onclick="setPeriod('currentYear')">📆 Este Año</button>
+                        <button class="btn btn-small" onclick="setPeriod('lastYear')">📆 Año Pasado</button>
+                        <button class="btn btn-small" onclick="setPeriod('last6Months')">📈 Últimos 6 Meses</button>
+                        <button class="btn btn-small" onclick="setPeriod('last12Months')">📈 Últimos 12 Meses</button>
+                    </div>
+                </div>
+                <div id="periodSummary" style="margin-top: 15px;"></div>
+            </div>
+
+            <div class="card">
+                <h3>Resumen Financiero</h3>
+                <div id="financialSummary"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Distribución de Gastos Totales</h3>
+                <div class="chart" id="expenseChart">
+                    <p>Los gráficos se mostrarán cuando agregues datos</p>
+                </div>
+            </div>
+
+            <div class="card" id="fixedExpensesCard" style="display: none;">
+                <h3>🏠 Gastos Fijos Programados</h3>
+                <div id="fixedExpensesList"></div>
+            </div>
+        </div>
+
+        <!-- Income Tab -->
+        <div id="income" class="tab-content">
+            <div class="card">
+                <h3>Agregar Ingreso</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="incomeDescription">Descripción</label>
+                        <input type="text" id="incomeDescription" placeholder="Ej: Salario, Freelance">
+                    </div>
+                    <div class="form-col">
+                        <label for="incomeAmount">Monto ($)</label>
+                        <input type="number" id="incomeAmount" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="incomeFrequency">Frecuencia</label>
+                        <select id="incomeFrequency">
+                            <option value="monthly">Mensual</option>
+                            <option value="biweekly">Quincenal</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="irregular">Irregular</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <label for="incomeDate">Fecha</label>
+                        <input type="date" id="incomeDate">
+                    </div>
+                </div>
+                <button class="btn btn-success" onclick="addIncome()">➕ Agregar Ingreso</button>
+            </div>
+
+            <div class="card">
+                <h3>Lista de Ingresos</h3>
+                <div class="items-list" id="incomeList"></div>
+            </div>
+        </div>
+
+        <!-- Expenses Tab -->
+        <div id="expenses" class="tab-content">
+            <!-- Expense Management -->
+            <div class="card">
+                <h3>💸 Agregar Gasto</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="expenseDescription">Descripción</label>
+                        <input type="text" id="expenseDescription" placeholder="Ej: Supermercado, Gasolina, Arriendo">
+                    </div>
+                    <div class="form-col">
+                        <label for="expenseAmount">Monto ($)</label>
+                        <input type="number" id="expenseAmount" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="expenseCategory">Categoría</label>
+                        <select id="expenseCategory">
+                            <option value="alimentacion">Alimentación</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="entretenimiento">Entretenimiento</option>
+                            <option value="salud">Salud</option>
+                            <option value="educacion">Educación</option>
+                            <option value="vivienda">Vivienda</option>
+                            <option value="servicios">Servicios (Luz, Agua, Internet)</option>
+                            <option value="ropa">Ropa</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <label for="expenseDate">Fecha</label>
+                        <input type="date" id="expenseDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="expenseType">Tipo de Gasto</label>
+                        <select id="expenseType" onchange="toggleRecurringOptions()">
+                            <option value="single">Gasto Único</option>
+                            <option value="recurring">Gasto Recurrente</option>
+                        </select>
+                    </div>
+                    <div class="form-col" id="recurringOptions" style="display: none;">
+                        <label for="recurringFrequency">Frecuencia</label>
+                        <select id="recurringFrequency">
+                            <option value="monthly">Mensual</option>
+                            <option value="quarterly">Trimestral</option>
+                            <option value="yearly">Anual</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row" id="recurringEndDate" style="display: none;">
+                    <div class="form-col">
+                        <label for="recurringEndDateInput">Fecha de Finalización (Opcional)</label>
+                        <input type="date" id="recurringEndDateInput">
+                        <small>Deja vacío para gasto permanente</small>
+                    </div>
+                </div>
+                <button class="btn btn-warning" onclick="addExpense()">➕ Agregar Gasto</button>
+
+                <div style="margin-top: 20px;">
+                    <label>Gastos Fijos Comunes:</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                        <button class="btn btn-small" onclick="quickSetupExpense('Arriendo', 'vivienda', 'monthly')">🏠
+                            Arriendo</button>
+                        <button class="btn btn-small" onclick="quickSetupExpense('Luz', 'servicios', 'monthly')">⚡
+                            Luz</button>
+                        <button class="btn btn-small" onclick="quickSetupExpense('Agua', 'servicios', 'monthly')">💧
+                            Agua</button>
+                        <button class="btn btn-small" onclick="quickSetupExpense('Internet', 'servicios', 'monthly')">🌐
+                            Internet</button>
+                        <button class="btn btn-small" onclick="quickSetupExpense('Gas', 'servicios', 'monthly')">🔥
+                            Gas</button>
+                        <button class="btn btn-small" onclick="quickSetupExpense('Celular', 'servicios', 'monthly')">📱
+                            Celular</button>
+                        <button class="btn btn-small"
+                            onclick="quickSetupExpense('Seguro Auto', 'transporte', 'monthly')">🚗 Seguro Auto</button>
+                        <button class="btn btn-small" onclick="quickSetupExpense('Gym', 'salud', 'monthly')">💪
+                            Gym</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Debt Management -->
+            <div class="card">
+                <h3>💳 Agregar Deuda</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="debtDescription">Descripción</label>
+                        <input type="text" id="debtDescription" placeholder="Ej: Préstamo bancario, Tarjeta de crédito">
+                    </div>
+                    <div class="form-col">
+                        <label for="debtAmount">Pago Mensual ($)</label>
+                        <input type="number" id="debtAmount" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="debtTotal">Deuda Total ($)</label>
+                        <input type="number" id="debtTotal" min="0" step="0.01">
+                    </div>
+                    <div class="form-col">
+                        <label for="debtRate">Tasa de Interés (%)</label>
+                        <input type="number" id="debtRate" min="0" step="0.01">
+                    </div>
+                </div>
+                <button class="btn btn-danger" onclick="addDebt()">➕ Agregar Deuda</button>
+            </div>
+
+            <!-- Combined Lists -->
+            <div class="card">
+                <h3>📋 Gastos Registrados</h3>
+                <div class="items-list" id="expensesList"></div>
+            </div>
+
+            <div class="card">
+                <h3>💳 Deudas Activas</h3>
+                <div class="items-list" id="debtsList"></div>
+            </div>
+        </div>
+
+
+        <!-- Savings Tab -->
+        <div id="savings" class="tab-content">
+            <div class="card">
+                <h3>Configurar Meta de Ahorro</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="savingsDescription">Descripción</label>
+                        <input type="text" id="savingsDescription" placeholder="Ej: Fondo de emergencia, Vacaciones">
+                    </div>
+                    <div class="form-col">
+                        <label for="savingsTarget">Meta ($)</label>
+                        <input type="number" id="savingsTarget" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="savingsMonthly">Ahorro Mensual ($)</label>
+                        <input type="number" id="savingsMonthly" min="0" step="0.01">
+                    </div>
+                    <div class="form-col">
+                        <label for="savingsDate">Fecha Objetivo</label>
+                        <input type="date" id="savingsDate">
+                    </div>
+                </div>
+                <button class="btn" onclick="addSavings()">🎯 Agregar Meta</button>
+            </div>
+
+            <div class="card">
+                <h3>Metas de Ahorro</h3>
+                <div class="items-list" id="savingsList"></div>
+            </div>
+
+            <div class="card">
+                <h3>Sugerencias de Ahorro</h3>
+                <div id="savingsSuggestions"></div>
+            </div>
+        </div>
+
+        <!-- Projections Tab -->
+        <div id="projections" class="tab-content">
+            <div class="card">
+                <h3>Simulador de Proyecciones</h3>
+                <div class="projection-controls">
+                    <div>
+                        <label for="incomeIncrease">Incremento Ingresos (%)</label>
+                        <input type="number" id="incomeIncrease" value="0" step="0.1">
+                    </div>
+                    <div>
+                        <label for="expenseIncrease">Incremento Gastos (%)</label>
+                        <input type="number" id="expenseIncrease" value="0" step="0.1">
+                    </div>
+                    <div>
+                        <label for="projectionMonths">Meses a Proyectar</label>
+                        <input type="number" id="projectionMonths" value="12" min="1" max="60">
+                    </div>
+                    <div>
+                        <label for="additionalExpense">Gasto Adicional Mensual ($)</label>
+                        <input type="number" id="additionalExpense" value="0" step="0.01">
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateAdvancedProjections()">📊 Calcular Proyección Avanzada</button>
+            </div>
+
+            <div class="chart-container">
+                <h3>Proyección de Saldo</h3>
+                <div class="chart" id="projectionChart">
+                    <p>Configura los parámetros y haz clic en "Calcular Proyección"</p>
+                </div>
+            </div>
+
+            <div class="card" id="projectionResults" style="display: none;">
+                <h3>Resultados de la Proyección</h3>
+                <div id="projectionSummary"></div>
+            </div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content">
+            <div class="card">
+                <h3>Generar Reportes</h3>
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="reportType">Tipo de Reporte</label>
+                        <select id="reportType">
+                            <option value="monthly">Reporte Mensual</option>
+                            <option value="annual">Reporte Anual</option>
+                            <option value="category">Por Categoría</option>
+                            <option value="complete">Reporte Completo</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <label for="reportMonth">Mes/Año</label>
+                        <input type="month" id="reportMonth">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn" onclick="generateReport()">📄 Generar Reporte</button>
+                    <button class="btn btn-success" onclick="exportToCSV()">📥 Exportar CSV</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Reporte Generado</h3>
+                <div id="reportContent"></div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+            <div class="card">
+                <h3>🔧 Gestión de Datos</h3>
+                <div class="form-group">
+                    <p>Administra tus datos financieros de forma segura:</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                        <button class="btn btn-success" onclick="backupData()">💾 Crear Respaldo</button>
+                        <button class="btn btn-warning" onclick="restoreData()">🔄 Restaurar Datos</button>
+                        <button class="btn btn-danger" onclick="clearAllData()">🗑️ Limpiar Todo</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Estadísticas Generales</h3>
+                <div id="generalStats"></div>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Metas y Objetivos</h3>
+                <div class="form-group">
+                    <label for="monthlyGoal">Meta de Ahorro Mensual (%)</label>
+                    <input type="number" id="monthlyGoal" min="0" max="100" value="20" step="1">
+                    <small>Porcentaje de tus ingresos que deseas ahorrar mensualmente</small>
+                </div>
+                <div class="form-group">
+                    <label for="emergencyFund">Fondo de Emergencia (meses)</label>
+                    <input type="number" id="emergencyFund" min="1" max="24" value="6" step="1">
+                    <small>Número de meses de gastos que deseas tener como fondo de emergencia</small>
+                </div>
+                <button class="btn" onclick="updateGoals()">🎯 Actualizar Metas</button>
+            </div>
+
+            <div class="card">
+                <h3>ℹ️ Información de la Aplicación</h3>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h4>💰 Gestor Personal de Finanzas v2.0</h4>
+                    <p><strong>Características principales:</strong></p>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>✅ Gestión completa de ingresos, gastos, deudas y ahorros</li>
+                        <li>✅ Proyecciones financieras con múltiples escenarios</li>
+                        <li>✅ Reportes detallados y exportación a CSV</li>
+                        <li>✅ Almacenamiento local seguro</li>
+                        <li>✅ Interfaz responsive y moderna</li>
+                        <li>✅ Validaciones de entrada robustas</li>
+                        <li>✅ Gráficos visuales interactivos</li>
+                        <li>✅ Sugerencias personalizadas de ahorro</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Desarrollado con:</strong> HTML5, CSS3, JavaScript ES6+</p>
+                    <p><strong>Almacenamiento:</strong> localStorage del navegador</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
