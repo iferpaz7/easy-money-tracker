@@ -1,84 +1,180 @@
-/* Easy Money Tracker - Styles */
+/* Easy Money Tracker - Ocean Blue Palette */
 
-/* Root Color Variables - Professional Financial Palette */
+/* Root Color Variables - Ocean Blue Theme */
 :root {
-  /* Primary Colors - Trust & Professionalism */
-  --color-primary-dark: #1a365d;        /* Deep Navy Blue */
-  --color-primary: #3182ce;             /* Trust Blue */
-  --color-primary-light: #63b3ed;       /* Light Trust Blue */
+  /* Primary Colors - Ocean Blue Gradient with better contrast */
+  --color-primary-dark: #05445e;        /* Navy Blue - darker for better contrast */
+  --color-primary: #189ab4;             /* Blue Grotto */
+  --color-primary-light: #75e6da;       /* Blue Green */
+  
+  /* Secondary Colors - Better contrast */
+  --color-secondary-dark: #05445e;      /* Navy Blue for dark text */
+  --color-secondary: #189ab4;           /* Blue Grotto for medium text */
+  --color-secondary-light: #75e6da;     /* Blue Green for light elements */
 
-  /* Secondary Colors - Functional Categories */
-  --color-secondary-dark: #2d3748;      /* Charcoal Gray */
-  --color-secondary: #718096;           /* Medium Gray */
-  --color-secondary-light: #a0aec0;     /* Light Gray */
+  /* Accent Colors - Complementary */
+  --color-accent: #75e6da;              /* Blue Green */
+  --color-accent-dark: #189ab4;         /* Blue Grotto */
 
-  /* Accent Colors - Interactive Elements */
-  --color-accent: #805ad5;              /* Sophisticated Purple */
-  --color-accent-dark: #6b46c1;         /* Dark Purple */
+  /* Semantic Colors - Ocean Themed */
+  --color-success: #75e6da;             /* Blue Green for success */
+  --color-success-dark: #189ab4;        /* Blue Grotto */
+  --color-success-light: #d4f1f4;       /* Baby Blue */
 
-  /* Semantic Colors - Financial Categories */
-  --color-success: #38a169;             /* Professional Green */
-  --color-success-dark: #2f855a;        /* Dark Green */
-  --color-success-light: #68d391;       /* Light Green */
+  --color-danger: #ff6b6b;              /* Coral Red */
+  --color-danger-dark: #e55555;         /* Dark Coral */
+  --color-danger-light: #ffb3b3;        /* Light Coral */
 
-  --color-danger: #e53e3e;              /* Muted Red */
-  --color-danger-dark: #c53030;         /* Dark Red */
-  --color-danger-light: #feb2b2;        /* Light Red */
+  --color-warning: #ffd93d;             /* Ocean Yellow */
+  --color-warning-dark: #ffcc02;        /* Golden Yellow */
+  --color-warning-light: #fff176;       /* Light Yellow */
 
-  --color-warning: #dd6b20;             /* Warm Amber */
-  --color-warning-dark: #c05621;        /* Dark Amber */
-  --color-warning-light: #fbb6ce;       /* Light Amber */
-
-  /* Neutral Colors - Backgrounds & Text */
+  /* Neutral Colors - Ocean Inspired with better contrast */
   --color-white: #ffffff;               /* Pure White */
-  --color-gray-50: #f7fafc;             /* Soft White */
-  --color-gray-100: #edf2f7;            /* Very Light Gray */
-  --color-gray-200: #e2e8f0;            /* Light Gray */
-  --color-gray-300: #cbd5e0;            /* Medium Light Gray */
-  --color-gray-400: #a0aec0;            /* Light Gray */
-  --color-gray-500: #718096;            /* Medium Gray */
-  --color-gray-600: #4a5568;            /* Dark Medium Gray */
-  --color-gray-700: #2d3748;            /* Charcoal Gray */
-  --color-gray-800: #1a202c;            /* Dark Charcoal */
-  --color-gray-900: #171923;            /* Almost Black */
+  --color-gray-50: #f8fdff;             /* Very Light Ocean */
+  --color-gray-100: #f0fafc;            /* Light Ocean */
+  --color-gray-200: #e6f7fb;            /* Ocean Mist */
+  --color-gray-300: #d4f1f4;            /* Baby Blue */
+  --color-gray-400: #a0d2db;            /* Light Ocean Blue */
+  --color-gray-500: #189ab4;            /* Blue Grotto - for readable text */
+  --color-gray-600: #05445e;            /* Navy Blue - for dark readable text */
+  --color-gray-700: #033649;            /* Deep Navy - for main text */
+  --color-gray-800: #022834;            /* Deeper Navy */
+  --color-gray-900: #011a21;            /* Deepest Navy */
 
-  /* Shadows & Effects */
-  --shadow-primary: rgba(26, 54, 93, 0.1);
-  --shadow-primary-dark: rgba(26, 54, 93, 0.15);
-  --shadow-primary-darker: rgba(26, 54, 93, 0.3);
-  --shadow-button: rgba(49, 130, 206, 0.3);
+  /* Subtle Shadows - Much lighter for ocean theme */
+  --shadow-primary: rgba(5, 68, 94, 0.04);
+  --shadow-primary-dark: rgba(5, 68, 94, 0.06);
+  --shadow-primary-darker: rgba(5, 68, 94, 0.08);
+  --shadow-button: rgba(24, 154, 180, 0.15);
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-  --gradient-success: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-dark) 100%);
-  --gradient-danger: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-dark) 100%);
-  --gradient-warning: linear-gradient(135deg, var(--color-warning) 0%, var(--color-warning-dark) 100%);
-  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-  --gradient-background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  /* Light mode - No gradients, solid colors only */
+  --gradient-primary: #189ab4;
+  --gradient-success: #75e6da;
+  --gradient-danger: #ff6b6b;
+  --gradient-warning: #ffd93d;
+  --gradient-accent: #75e6da;
+  --gradient-background: #f8fdff;
 
   /* Border Radius */
-  --border-radius-sm: 8px;
-  --border-radius-md: 10px;
-  --border-radius-lg: 15px;
-  --border-radius-xl: 20px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
 
   /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
 
-  /* Glass Effects */
-  --glass-background: rgba(255, 255, 255, 0.1);
-  --glass-background-strong: rgba(255, 255, 255, 0.15);
-  --glass-background-subtle: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-border-subtle: rgba(255, 255, 255, 0.1);
-  --glass-backdrop-blur: blur(10px);
+  /* Ocean Glass Effects - Minimal and clean */
+  --glass-background: rgba(255, 255, 255, 0.80);
+  --glass-background-strong: rgba(255, 255, 255, 0.90);
+  --glass-background-subtle: rgba(255, 255, 255, 0.60);
+  --glass-border: rgba(24, 154, 180, 0.04);
+  --glass-border-subtle: rgba(24, 154, 180, 0.02);
+  --glass-backdrop-blur: blur(8px);
+  --glass-backdrop-blur-strong: blur(12px);
+  --glass-backdrop-blur-subtle: blur(4px);
+  --glass-backdrop-blur: blur(12px);
   --glass-backdrop-blur-strong: blur(20px);
-  --glass-backdrop-blur-subtle: blur(5px);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --glass-shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.15);
-  --glass-shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.05);
+  --glass-backdrop-blur-subtle: blur(8px);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --glass-shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.18);
+  --glass-shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --line-height-tight: 1.15;
+    --line-height-base: 1.4;
+    --line-height-relaxed: 1.6;
+
+    /* Focus Ring */
+    --focus-ring: 0 0 0 3px rgba(99, 179, 237, 0.5);
+    --focus-ring-danger: 0 0 0 3px rgba(229, 62, 62, 0.4);
+
+    /* Mode (light defaults) */
+    --app-bg: var(--gradient-background);
+    --surface-glass: var(--glass-background);
+    --surface-glass-strong: var(--glass-background-strong);
+    --text-color: var(--color-gray-700);
+    --text-color-strong: var(--color-gray-800);
+    --text-on-accent: var(--color-white);
+    --divider-color: var(--color-gray-200);
+    --scrollbar-thumb: rgba(255,255,255,0.25);
+    --scrollbar-track: rgba(255,255,255,0.05);
+}
+
+/* Dark Theme Overrides - Light Ocean Night with gradients */
+[data-theme="dark"] {
+  --color-primary-dark: #189ab4;
+  --color-primary: #75e6da;
+  --color-primary-light: #d4f1f4;
+  --color-secondary-dark: #a0d2db;
+  --color-secondary: #75e6da;
+  --color-secondary-light: #d4f1f4;
+  --color-gray-50: #1a2e35;
+  --color-gray-100: #243945;
+  --color-gray-200: #2e4650;
+  --color-gray-300: #3a5763;
+  --color-gray-400: #4a6b7a;
+  --color-gray-500: #6b8b9a;
+  --color-gray-600: #8fb0bd;
+  --color-gray-700: #b5d0da;
+  --color-gray-800: #d4f1f4;
+  --color-gray-900: #e6f7fb;
+  
+  /* Dark mode gradients */
+  --gradient-primary: linear-gradient(135deg, #189ab4 0%, #75e6da 100%);
+  --gradient-success: linear-gradient(135deg, #75e6da 0%, #d4f1f4 100%);
+  --gradient-danger: linear-gradient(135deg, #ff6b6b 0%, #ffb3b3 100%);
+  --gradient-warning: linear-gradient(135deg, #ffd93d 0%, #fff176 100%);
+  --gradient-accent: linear-gradient(135deg, #189ab4 0%, #75e6da 100%);
+  --gradient-background: linear-gradient(135deg, #1a2e35 0%, #243945 50%, #2e4650 100%);
+  
+  --app-bg: linear-gradient(135deg, #1a2e35 0%, #243945 50%, #2e4650 100%);
+  --surface-glass: rgba(255,255,255,0.08);
+  --surface-glass-strong: rgba(255,255,255,0.15);
+  --glass-background: rgba(255, 255, 255, 0.08);
+  --glass-background-strong: rgba(255, 255, 255, 0.15);
+  --glass-background-subtle: rgba(255,255,255,0.04);
+  --glass-border: rgba(117,230,218,0.15);
+  --glass-border-subtle: rgba(117,230,218,0.08);
+  --text-color: var(--color-gray-700);
+  --text-color-strong: var(--color-gray-900);
+  --scrollbar-thumb: rgba(117,230,218,0.25);
+  --scrollbar-track: rgba(117,230,218,0.05);
+  --shadow-primary: rgba(0,0,0,0.05);
+  --shadow-primary-dark: rgba(0,0,0,0.08);
+  --shadow-primary-darker: rgba(0,0,0,0.12);
+}/* Smooth theme transition */
+html, body, .container, .card, .summary-card, .nav-tabs, .nav-tab, .modal, .modal-content, .item, .chart-container, .chart, input, select, textarea {
+    transition: background-color .4s ease, color .4s ease, border-color .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
+}
+
+/* Scrollbar styling */
+body::-webkit-scrollbar { width: 12px; }
+body::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+body::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
+body::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.35); }
+
+/* Focus styles */
+:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.btn-danger:focus-visible { box-shadow: var(--focus-ring-danger); }
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+    html, body, .container, .card, .summary-card, .nav-tab, .modal-content, .item, .btn { transition: none !important; animation: none !important; }
 }
 
 /* Glass Effect Utility Classes */
@@ -140,6 +236,66 @@
 .glass-overlay.active {
   opacity: 1;
   visibility: visible;
+}
+
+/* Accessibility utility */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.visually-hidden-focusable:focus, .visually-hidden-focusable:active {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    clip: auto !important;
+    padding: .5rem 1rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--border-radius-sm);
+    z-index: 10000;
+}
+
+/* Theme toggle button refinement */
+#themeToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+    font-size: var(--font-size-sm);
+    min-width: 48px;
+    position: relative;
+}
+
+#themeToggle .theme-icon { font-size: 1.2rem; }
+
+[data-theme="dark"] #themeToggle .theme-icon { filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
+
+/* Improve nav tab focus/active visibility in both themes */
+.nav-tab {
+    position: relative;
+}
+.nav-tab.active::after, .nav-tab:focus-visible::after {
+    content: '';
+    position: absolute;
+    left: 8px; right: 8px; bottom: 4px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--color-primary-light);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.2);
+}
+
+[data-theme="dark"] .nav-tab.active::after, [data-theme="dark"] .nav-tab:focus-visible::after {
+    background: var(--color-primary-light);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
 }
 
 /* Enhanced Glass Effects for Special Elements */
@@ -220,13 +376,145 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gradient-background);
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f8fdff;
+    color: var(--color-gray-700);
+    line-height: 1.6;
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
     position: relative;
     overflow-x: hidden;
+    padding-top: 70px; /* Space for light navbar */
 }
+
+/* Clean Light Navbar - Better contrast */
+.main-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(24, 154, 180, 0.15);
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 1px 6px rgba(5, 68, 94, 0.08);
+}
+
+.navbar-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+}
+
+.brand-icon {
+    font-size: 1.25rem;
+}
+
+.brand-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    min-height: calc(100vh - 200px);
+}
+
+.app-footer {
+    background: var(--glass-background);
+    backdrop-filter: var(--glass-backdrop-blur);
+    -webkit-backdrop-filter: var(--glass-backdrop-blur);
+    border-top: 1px solid var(--glass-border);
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.app-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-gray-50);
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content p {
+    margin: 0.5rem 0;
+    color: var(--text-color);
+    font-size: var(--font-size-sm);
+}
+
+/* Remove old container styles */
+.container {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.header {
+    background: none;
+    color: inherit;
+    padding: 0;
+    text-align: left;
+}
+
+html { font-size: 16px; }
+@media (max-width: 1200px) { html { font-size: 15px; } }
+@media (max-width: 992px) { html { font-size: 15px; } }
+@media (max-width: 768px) { html { font-size: 14.5px; } }
+@media (max-width: 480px) { html { font-size: 14px; } }
+
+body, button, input, select, textarea { color: var(--text-color); line-height: var(--line-height-base); }
+h1, h2, h3, h4 { color: var(--text-color-strong); line-height: var(--line-height-tight); font-weight: 600; }
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-md); }
+p, li, label, input, select, textarea, button { font-size: var(--font-size-base); }
+small { font-size: var(--font-size-sm); }
 
 body::before {
     content: '';
@@ -312,40 +600,133 @@ body::after {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.nav-tabs {
-    display: flex;
-    background: var(--glass-background-subtle);
-    backdrop-filter: var(--glass-backdrop-blur-subtle);
-    -webkit-backdrop-filter: var(--glass-backdrop-blur-subtle);
-    border-bottom: 1px solid var(--glass-border-subtle);
-    overflow-x: auto;
-    position: relative;
+/* Navbar Enhancement - Removed duplicate styling */
+
+/* Responsive Navigation - Light Navbar */
+.navbar-nav { flex-wrap: nowrap; }
+.nav-scroll-wrapper { 
+    display: flex; 
+    flex: 1; 
+    overflow-x: auto; 
+    scrollbar-width: none;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+}
+.nav-scroll-wrapper::-webkit-scrollbar { display: none; }
+.nav-toggle { display: none !important; }
+
+/* Dark theme for navbar - Minimal glass effect */
+[data-theme="dark"] .main-navbar {
+    background: rgba(26, 46, 53, 0.95);
+    border-bottom: 1px solid rgba(117, 230, 218, 0.08);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
 }
 
-.nav-tabs::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--color-gray-50);
-    opacity: 0.3;
-    z-index: -1;
+[data-theme="dark"] .navbar-brand {
+    color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .nav-tab {
+    color: var(--color-gray-600);
+}
+
+[data-theme="dark"] .nav-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .nav-tab.active {
+    background: var(--color-primary);
+    color: var(--color-gray-50);
+}
+
+@media (max-width: 930px) {
+  body { padding-top: 60px; }
+  .main-navbar { padding: 0.5rem 1rem; }
+  .navbar-content { flex-direction: column; gap: 0.5rem; align-items: stretch; }
+  .navbar-brand { align-self: center; }
+  .navbar-nav { 
+    flex-direction: column; 
+    align-items: stretch; 
+    width: 100%;
+  }
+  .nav-toggle { 
+    display: inline-flex !important; 
+    align-self: center; 
+    margin: 4px 0; 
+    background: var(--glass-background);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  .nav-scroll-wrapper { 
+    flex-direction: column; 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height .3s ease; 
+    width: 100%; 
+    background: transparent;
+  }
+  .nav-scroll-wrapper.open { max-height: 400px; padding: 6px 0; }
+  .nav-tab { 
+    text-align: center; 
+    margin: 2px 4px;
+    border-radius: 4px;
+    padding: 8px 12px;
+  }
+  .navbar-actions { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  body { padding-top: 55px; }
+  .main-navbar { padding: 0.25rem 0.75rem; }
+  .navbar-content { gap: 0.25rem; }
+  .brand-text { font-size: 1rem; }
+  .nav-toggle {
+    margin: 2px 0;
+    padding: 4px 8px;
+    font-size: 0.875rem;
+  }
+  .nav-tab {
+    margin: 1px 2px;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
 }
 
 .nav-tab {
-    flex: 1;
-    padding: 20px;
+    flex: 0 0 auto;
+    padding: 10px 16px;
     text-align: center;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--color-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-gray-600);
     transition: var(--transition-normal);
-    min-width: 150px;
+    min-width: 100px;
+    white-space: nowrap;
+    position: relative;
+    border-radius: 6px;
+    margin: 0 2px;
+}
+
+.nav-tab:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-gray-700);
+}
+
+.nav-tab.active {
+    background: var(--color-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.nav-tab:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 .nav-tab:hover {
@@ -871,67 +1252,4 @@ input:focus, select:focus, textarea:focus {
     backdrop-filter: var(--glass-backdrop-blur);
     -webkit-backdrop-filter: var(--glass-backdrop-blur);
     transform: scale(1.1);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-tabs {
-        flex-direction: column;
-    }
-    
-    .form-row {
-        flex-direction: column;
-    }
-    
-    .summary-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .container {
-        margin: 10px;
-        border-radius: 15px;
-    }
-    
-    .header h1 {
-        font-size: 2em;
-    }
-    
-    .btn {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-    
-    .card {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-    
-    .header {
-        padding: 20px;
-    }
-    
-    .header h1 {
-        font-size: 1.8em;
-    }
-    
-    .tab-content {
-        padding: 20px;
-    }
-    
-    .summary-cards {
-        gap: 15px;
-    }
-    
-    .summary-card {
-        padding: 20px;
-    }
-    
-    .summary-card .amount {
-        font-size: 1.8em;
-    }
 }

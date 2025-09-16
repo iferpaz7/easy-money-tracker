@@ -19,6 +19,102 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateDashboard();
     updateAllLists();
+
+    // Theme initialization
+    initThemeToggle();
+});
+
+// THEME TOGGLE LOGIC
+function initThemeToggle() {
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+
+    const STORAGE_KEY = 'emt-theme';
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let stored = localStorage.getItem(STORAGE_KEY);
+
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+            btn.setAttribute('aria-pressed', 'true');
+            btn.setAttribute('aria-label', 'Cambiar a modo claro');
+            swapIcon('moon');
+        } else {
+            root.removeAttribute('data-theme');
+            btn.setAttribute('aria-pressed', 'false');
+            btn.setAttribute('aria-label', 'Cambiar a modo oscuro');
+            swapIcon('sun');
+        }
+    }
+
+    function swapIcon(mode) {
+        const svg = document.getElementById('themeIconSvg');
+        if (!svg) return;
+        svg.innerHTML = '';
+        if (mode === 'moon') {
+            // moon icon
+            const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+            path.setAttribute('d','M21 12.79A9 9 0 0 1 11.21 3 7 7 0 0 0 12 17a7 7 0 0 0 9-4.21Z');
+            path.setAttribute('fill','currentColor');
+            svg.appendChild(path);
+        } else {
+            // sun icon
+            svg.innerHTML = `
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+        }
+    }
+
+    // Determine initial theme
+    let initial = stored || (prefersDark.matches ? 'dark' : 'light');
+    applyTheme(initial);
+
+    btn.addEventListener('click', () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        const next = isDark ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem(STORAGE_KEY, next);
+    });
+
+    // Sync with system changes if user hasn't explicitly chosen
+    prefersDark.addEventListener('change', (e) => {
+        const explicit = localStorage.getItem(STORAGE_KEY);
+        if (explicit) return; // user preference overrides
+        applyTheme(e.matches ? 'dark' : 'light');
+    });
+}
+
+// NAV TOGGLE LOGIC
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.nav-toggle');
+    const wrapper = document.querySelector('.nav-scroll-wrapper');
+    if (!toggle || !wrapper) return;
+
+    function syncVisibility() {
+        if (window.innerWidth <= 930) {
+            toggle.style.display = 'inline-flex';
+        } else {
+            toggle.style.display = 'none';
+            wrapper.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    toggle.addEventListener('click', () => {
+        const isOpen = wrapper.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    window.addEventListener('resize', syncVisibility);
+    syncVisibility();
 });
 
 // Tab Management
